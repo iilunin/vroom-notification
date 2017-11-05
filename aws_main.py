@@ -9,13 +9,13 @@ import boto3
 
 
 def main(event, context):
-    price = os.environ.get('CAR_PRICE', 10000)
-    miles = os.environ.get('CAR_MILEAGE', 20000)
+    price = os.environ.get('CAR_PRICE')
+    miles = os.environ.get('CAR_MILEAGE')
 
     output_dir = '{p}_{m}'.format(p=price, m=miles)
     data_file = os.path.join(output_dir, 'data.json')
 
-    url = 'https://invsearch.vroomapi.com/v2/inventory?brand=vroom&sort=&offset=0&limit=100&' \
+    url = 'https://invsearch.vroomapi.com/v2/inventory?brand=vroom&sort=&offset=0&limit=1000&' \
           'price_max={p}&miles_max={m}&year_max=all-years&year_min=all-years&mm=all-makes'.format(p=price, m=miles)
 
     r = requests.get(url)
